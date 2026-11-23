@@ -1,0 +1,116 @@
+/* Fluid type: clamp(minimum, preferred, maximum).
+   The preferred value mixes rem + vw so text grows with the viewport
+   but still respects the user's browser zoom / font-size setting. */
+body {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.6;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+}
+
+header h1 {
+  font-size: clamp(2.25rem, 1.5rem + 3.75vw, 3.5rem);
+  color: royalblue;
+}
+
+header img {
+  object-fit: cover;
+  object-position: bottom;
+}
+
+header p {
+  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
+  color: royalblue;
+}
+
+/* Navigation: horizontal on wider screens */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: royalblue;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  text-decoration: underline;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* Mobile: collapse the nav behind a burger button */
+@media (max-width: 600px) {
+  .js .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background: none;
+    border: 2px solid royalblue;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    display: block;
+    height: 3px;
+    background: royalblue;
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  /* Turn the three lines into an X when open */
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .js nav ul {
+    display: none;
+  }
+
+  .js .menu-toggle[aria-expanded="true"] + ul {
+    display: flex;
+  }
+
+  nav a {
+    display: block;
+    padding: 0.75rem 0; /* bigger tap targets */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle span {
+    transition: none;
+  }
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eric Hooker</title>
+  <script>
+    // Flag that JavaScript is running so the nav only collapses when the burger can open it.
+    document.documentElement.classList.add('js');
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <img src="images/profile.jpeg" alt="Eric Hooker taking a selfie in front of the Welcome to California sign at the Sierra County line, with motorcycles parked behind him" width="200" height="200">
+    <h1>Eric Hooker</h1>
+    <p>Logistician, motorcycle rider, and budding AI creator building practical tools.</p>
+  </header>
+
+  <nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <ul id="nav-menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <p>I'm Eric Hooker, a logistician by trade who spends my days keeping supplies, schedules, and people moving in the right direction. When I'm off the clock, you'll usually find me on my motorcycle chasing open roads. Lately I've been channeling that same curiosity into artificial intelligence, learning to build practical AI tools that make everyday work simpler, faster, and smarter.</p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Logistics</li>
+        <li>Motorcycle riding</li>
+        <li>Budding AI creator</li>
+        <li>Planning and problem-solving</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Currently Building</h2>
+      <ul>
+        <li>Learning the fundamentals of Python</li>
+        <li>Experimenting with prompt engineering and AI APIs</li>
+        <li>This website, one HTML element at a time</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+
+      <article>
+        <h3>Shipment Status Assistant</h3>
+        <p>A simple AI chatbot that answers plain-English questions about where a shipment is and when it will arrive.</p>
+        <a href="#">View project</a>
+      </article>
+
+      <article>
+        <h3>Ride Log</h3>
+        <p>A lightweight tracker for motorcycle trips that records routes, mileage, and notes from the road.</p>
+        <a href="#">View project</a>
+      </article>
+
+      <article>
+        <h3>Inventory Forecast Notebook</h3>
+        <p>A Python notebook that uses past usage data to predict when supplies will need to be reordered.</p>
+        <a href="#">View project</a>
+      </article>
+    </section>
+
+    <section>
+      <h2>Recent Posts</h2>
+
+      <article>
+        <h3>From Logistics to AI: Why I Made the Jump</h3>
+        <p>A look at the moment I realized the problems I solve at work are perfect fits for AI.</p>
+      </article>
+
+      <article>
+        <h3>What Long Rides Taught Me About Learning to Code</h3>
+        <p>Patience, preparation, and enjoying the journey apply just as much to programming as they do to the open road.</p>
+      </article>
+
+      <article>
+        <h3>My First Week Writing HTML</h3>
+        <p>Notes on semantic tags, rookie mistakes, and why an ugly page is a great place to start.</p>
+      </article>
+    </section>
+
+    <aside>
+      <h2>Favorite Quote</h2>
+      <blockquote>
+        <p>"Amateurs talk strategy. Professionals talk logistics."</p>
+      </blockquote>
+      <p>&mdash; <cite>Often attributed to General Omar Bradley</cite></p>
+    </aside>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <address>
+        <p>Phone: <a href="tel:+19107779311">910-777-9311</a></p>
+      </address>
+      <form action="#" method="post">
+        <p>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" pattern="[A-Za-z ]+" title="Letters and spaces only" required>
+        </p>
+
+        <p>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </p>
+
+        <p>
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel">
+        </p>
+
+        <p>
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject">
+            <option value="general">General</option>
+            <option value="project-inquiry">Project inquiry</option>
+            <option value="other">Other</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="What would you like to talk about?" required></textarea>
+        </p>
+
+        <p>
+          <input type="checkbox" id="subscribe" name="subscribe" value="yes">
+          <label for="subscribe">Subscribe me to occasional updates.</label>
+        </p>
+
+        <!-- Honeypot: hidden from people, but spam bots tend to fill it in. Reject any submission where it has a value. -->
+        <p hidden>
+          <label for="website">Leave this field empty</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </p>
+
+        <p>
+          <button type="submit">Send message</button>
+          <button type="reset">Reset</button>
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Eric Hooker. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    function setMenuOpen(open) {
+      menuToggle.setAttribute('aria-expanded', String(open));
+    }
+
+    menuToggle.addEventListener('click', () => {
+      setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // Close the menu after choosing a link
+    navMenu.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setMenuOpen(false);
+    });
+
+    // Close with Escape and return focus to the button
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+        setMenuOpen(false);
+        menuToggle.focus();
+      }
+    });
+  </script>
+</body>
+</html>
