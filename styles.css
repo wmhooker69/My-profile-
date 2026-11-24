@@ -16,7 +16,7 @@ h3 {
 
 header h1 {
   font-size: clamp(2.25rem, 1.5rem + 3.75vw, 3.5rem);
-  color: royalblue;
+  color: var(--primary);
 }
 
 header img {
@@ -26,10 +26,95 @@ header img {
 
 header p {
   font-size: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
-  color: royalblue;
+  color: var(--primary);
 }
 
-/* Navigation: horizontal on wider screens */
+/* Links, cards, and forms use the theme tokens from theme.css */
+a {
+  color: var(--primary);
+}
+
+article,
+aside {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.25rem 1rem 1rem;
+  margin-bottom: 1rem;
+}
+
+cite {
+  color: var(--text-muted);
+}
+
+input:not([type="checkbox"]),
+select,
+textarea {
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--primary);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+input:user-invalid,
+textarea:user-invalid {
+  border-color: var(--danger);
+}
+
+form button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 2px solid var(--primary);
+  cursor: pointer;
+}
+
+form button[type="submit"] {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+form button[type="reset"] {
+  background-color: transparent;
+  color: var(--primary);
+}
+
+form button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Navigation: horizontal on wider screens, theme toggle pinned right */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav .theme-toggle {
+  margin-left: auto;
+}
+
 nav ul {
   list-style: none;
   margin: 0;
@@ -39,7 +124,7 @@ nav ul {
 }
 
 nav a {
-  color: royalblue;
+  color: var(--primary);
   font-weight: 600;
   text-decoration: none;
 }
@@ -64,7 +149,7 @@ nav a:focus-visible {
     height: 44px;
     padding: 10px;
     background: none;
-    border: 2px solid royalblue;
+    border: 2px solid var(--primary);
     border-radius: 6px;
     cursor: pointer;
   }
@@ -72,7 +157,7 @@ nav a:focus-visible {
   .menu-toggle span {
     display: block;
     height: 3px;
-    background: royalblue;
+    background: var(--primary);
     border-radius: 2px;
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
@@ -93,6 +178,8 @@ nav a:focus-visible {
   nav ul {
     flex-direction: column;
     gap: 0;
+    order: 1; /* drop the open menu below both buttons */
+    flex-basis: 100%;
   }
 
   .js nav ul {
