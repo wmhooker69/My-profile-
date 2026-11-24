@@ -1,0 +1,13 @@
+{
+  "name": "profile-page",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Eric Hooker's profile page with a contact form backend",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=21.7"
+  }
+}

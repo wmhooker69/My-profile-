@@ -130,7 +130,7 @@
       <address>
         <p>Phone: <a href="tel:+19107779311">910-777-9311</a></p>
       </address>
-      <form action="#" method="post">
+      <form id="contact-form" action="/api/contact" method="post">
         <p>
           <label for="name">Name</label>
           <input type="text" id="name" name="name" autocomplete="name" pattern="[A-Za-z ]+" title="Letters and spaces only" required>
@@ -157,7 +157,8 @@
 
         <p>
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="6" placeholder="What would you like to talk about?" required></textarea>
+          <textarea id="message" name="message" rows="6" maxlength="500" placeholder="What would you like to talk about?" aria-describedby="message-count" required></textarea>
+          <span id="message-count" class="char-count">0 / 500</span>
         </p>
 
         <p>
@@ -175,6 +176,8 @@
           <button type="submit">Send message</button>
           <button type="reset">Reset</button>
         </p>
+
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
       </form>
     </section>
   </main>
@@ -184,6 +187,8 @@
   </footer>
 
   <script src="theme.js"></script>
+  <script src="char-counter.js"></script>
+  <script src="contact-form.js"></script>
   <script>
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.getElementById('nav-menu');

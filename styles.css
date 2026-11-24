@@ -201,3 +201,43 @@ nav a:focus-visible {
     transition: none;
   }
 }
+
+/* Contact form: character counter and status message */
+.char-count {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.char-count.at-limit {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status {
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+.form-status.success {
+  color: var(--success);
+  border-color: var(--success);
+}
+
+.form-status.error {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
