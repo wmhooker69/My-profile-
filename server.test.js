@@ -134,8 +134,10 @@ test('static files are served, but secrets and server files are not', async () =
   assert.strictEqual(home.status, 200);
   assert.match(await home.text(), /id="message-count"/);
   assert.strictEqual((await fetch(base + '/char-counter.js')).status, 200);
+  assert.strictEqual((await fetch(base + '/projects.html')).status, 200);
+  assert.strictEqual((await fetch(base + '/projects-store.js')).status, 200);
   assert.strictEqual((await fetch(base + '/images/profile.jpeg')).status, 200);
-  for (const p of ['/.env', '/.git/config', '/server.js', '/package.json', '/data/messages.jsonl', '/%2e%2e/etc/passwd', '/..%2fserver.js']) {
+  for (const p of ['/.env', '/.git/config', '/server.js', '/server.test.js', '/projects.test.js', '/package.json', '/data/messages.jsonl', '/%2e%2e/etc/passwd', '/..%2fserver.js']) {
     assert.strictEqual((await fetch(base + p)).status, 404, p);
   }
 });

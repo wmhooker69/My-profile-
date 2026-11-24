@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Eric Hooker</title>
+  <script>
+    // Flag that JavaScript is running so the nav only collapses when the burger can open it.
+    document.documentElement.classList.add('js');
+
+    // Set the theme before first paint so there's no flash of the wrong one:
+    // saved choice first, otherwise the system preference. See theme.js.
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>Projects</h1>
+    <p>Builds, rides, and garage work, sorted by machine.</p>
+  </header>
+
+  <nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <ul id="nav-menu">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="projects.html" aria-current="page">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="5"/>
+        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+  </nav>
+
+  <main>
+    <section aria-labelledby="add-project-heading">
+      <h2 id="add-project-heading">Add a project</h2>
+      <form id="project-form" class="project-form" novalidate>
+        <p>
+          <label for="project-name">Name <span class="required-mark" aria-hidden="true">*</span></label>
+          <input type="text" id="project-name" name="name" maxlength="100" required aria-describedby="project-name-error" autocomplete="off">
+          <span id="project-name-error" class="field-error"></span>
+        </p>
+
+        <p>
+          <label for="project-category">Category <span class="required-mark" aria-hidden="true">*</span></label>
+          <select id="project-category" name="category" required aria-describedby="project-category-error">
+            <option value="">Choose a category</option>
+          </select>
+          <span id="project-category-error" class="field-error"></span>
+        </p>
+
+        <p>
+          <label for="project-description">Description <span class="optional-mark">(optional)</span></label>
+          <textarea id="project-description" name="description" rows="4" maxlength="500" aria-describedby="project-description-count project-description-error"></textarea>
+          <span id="project-description-count" class="char-count">0 / 500</span>
+          <span id="project-description-error" class="field-error"></span>
+        </p>
+
+        <p class="form-note"><span aria-hidden="true">*</span> Required</p>
+
+        <p>
+          <button type="submit">Add project</button>
+        </p>
+      </form>
+      <p id="project-status" class="form-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading" tabindex="-1">Your projects</h2>
+      <div id="project-filters" class="chips" role="group" aria-label="Filter projects by category"></div>
+      <div id="project-groups"></div>
+      <noscript><p class="empty-state">Turn on JavaScript to add and view projects.</p></noscript>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Eric Hooker. All rights reserved.</p>
+  </footer>
+
+  <script src="theme.js"></script>
+  <script src="nav.js"></script>
+  <script src="char-counter.js"></script>
+  <script src="project-categories.js"></script>
+  <script src="projects-store.js"></script>
+  <script src="projects.js"></script>
+</body>
+</html>

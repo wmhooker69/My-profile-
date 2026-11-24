@@ -241,3 +241,208 @@ form button:disabled {
   cursor: wait;
 }
 
+/* ---------- Projects page ---------- */
+.project-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.project-form input[type="text"],
+.project-form select,
+.project-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 36rem;
+}
+
+.required-mark,
+.field-error {
+  color: var(--danger);
+}
+
+.optional-mark,
+.form-note {
+  color: var(--text-muted);
+  font-weight: normal;
+  font-size: 0.875rem;
+}
+
+.field-error {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.project-form [aria-invalid="true"] {
+  border-color: var(--danger);
+  border-width: 2px;
+}
+
+/* Filter chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.chip,
+.button-secondary,
+.button-danger {
+  font: inherit;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--primary);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.button-secondary,
+.button-danger {
+  border-radius: 4px;
+  min-height: 40px;
+  padding: 0.3rem 0.9rem;
+}
+
+.chip[aria-pressed="true"] {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.chip:hover,
+.button-secondary:hover {
+  background-color: var(--surface);
+}
+
+.chip[aria-pressed="true"]:hover {
+  background-color: var(--primary);
+}
+
+.button-danger {
+  border-color: var(--danger);
+  background-color: var(--danger);
+  color: var(--bg);
+}
+
+.chip:focus-visible,
+.button-secondary:focus-visible,
+.button-danger:focus-visible,
+#projects-heading:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.chip-count,
+.group-count {
+  font-weight: normal;
+  opacity: 0.85;
+}
+
+.group-count {
+  color: var(--text-muted);
+}
+
+/* Grouped list of project cards */
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+}
+
+.project-card {
+  height: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  padding: 0.75rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.project-name {
+  margin: 0;
+  font-size: 1.125rem;
+  overflow-wrap: anywhere;
+}
+
+.badge {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  color: var(--primary);
+  background-color: var(--bg);
+}
+
+/* Long descriptions are cut to three lines; the full text is in the title tooltip */
+.project-description {
+  margin: 0.5rem 0 0;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.project-card-footer {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.project-date-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.confirm-delete {
+  flex-basis: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--danger);
+  border-radius: 4px;
+  background-color: var(--bg);
+}
+
+.confirm-delete p {
+  margin: 0 0 0.5rem;
+  overflow-wrap: anywhere;
+}
+
+.confirm-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.empty-state {
+  padding: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  text-align: center;
+}

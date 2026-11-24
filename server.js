@@ -38,7 +38,7 @@ const STATIC_TYPES = {
   '.ico': 'image/x-icon',
   '.webp': 'image/webp'
 };
-const BLOCKED_FILES = new Set(['server.js', 'server.test.js']);
+const BLOCKED_FILES = new Set(['server.js']);
 
 // ---------- Validation ----------
 
@@ -240,6 +240,7 @@ async function serveStatic(req, res) {
     parts[0] === 'data' ||
     parts[0] === 'node_modules' ||
     BLOCKED_FILES.has(relative) ||
+    relative.endsWith('.test.js') ||
     !type;
 
   if (blocked) {

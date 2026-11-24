@@ -38,6 +38,7 @@
     <ul id="nav-menu">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
@@ -189,30 +190,6 @@
   <script src="theme.js"></script>
   <script src="char-counter.js"></script>
   <script src="contact-form.js"></script>
-  <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-
-    function setMenuOpen(open) {
-      menuToggle.setAttribute('aria-expanded', String(open));
-    }
-
-    menuToggle.addEventListener('click', () => {
-      setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
-    });
-
-    // Close the menu after choosing a link
-    navMenu.addEventListener('click', (event) => {
-      if (event.target.closest('a')) setMenuOpen(false);
-    });
-
-    // Close with Escape and return focus to the button
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
-        setMenuOpen(false);
-        menuToggle.focus();
-      }
-    });
-  </script>
+  <script src="nav.js"></script>
 </body>
 </html>
