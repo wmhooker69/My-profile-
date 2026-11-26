@@ -52,6 +52,18 @@ test('validateContact rejects missing and bad fields', () => {
   assert.deepStrictEqual(validateContact({ ...valid, message: '   ' }).errors, ['Message is required.']);
 });
 
+test('validateContact accepts real-world names', () => {
+  for (const name of ["O'Brien", 'O’Brien', 'Mary-Jane Smith', 'José García', 'Zoë', 'J. R. Hooker', '李华']) {
+    assert.deepStrictEqual(validateContact({ ...valid, name }).errors, [], name);
+  }
+});
+
+test('validateContact still rejects names without letters or with symbols', () => {
+  for (const name of ['R2D2', "'--.", 'Eric <b>', 'Eric\nBcc: x@y.z', 'Eric@home']) {
+    assert.match(validateContact({ ...valid, name }).errors[0], /letters/, JSON.stringify(name));
+  }
+});
+
 test('valid JSON submission is saved', async () => {
   const res = await post({ ...valid, subscribe: true });
   assert.strictEqual(res.status, 200);

@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Man Eric Hooker</title>
+  <title>Eric Hooker — Logistics, Motorcycles &amp; AI Tools</title>
+  <meta name="description" content="Eric Hooker is a logistician, motorcycle rider, and budding AI creator building practical tools. See his projects and posts, or get in touch.">
   <script>
     // Flag that JavaScript is running so the nav only collapses when the burger can open it.
     document.documentElement.classList.add('js');
@@ -23,180 +24,266 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <img src="images/profile.jpeg" alt="Eric Hooker taking a selfie in front of the Welcome to California sign at the Sierra County line, with motorcycles parked behind him" width="200" height="200">
-    <h1>Eric Hooker</h1>
-    <p>Logistician, motorcycle rider, and budding AI creator building practical tools.</p>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Site header: same on every page; only aria-current changes -->
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <nav class="site-nav" aria-label="Main">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+        <ul id="nav-menu">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="posts.html">Posts</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
   </header>
 
-  <nav>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </button>
-    <ul id="nav-menu">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-        <circle cx="12" cy="12" r="5"/>
-        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-    </button>
-  </nav>
-
-  <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>I'm Eric Hooker, a logistician by trade who spends my days keeping supplies, schedules, and people moving in the right direction. When I'm off the clock, you'll usually find me on my motorcycle chasing open roads. Lately I've been channeling that same curiosity into artificial intelligence, learning to build practical AI tools that make everyday work simpler, faster, and smarter.</p>
-    </section>
-
-    <section id="skills">
-      <h2>Skills</h2>
-      <!-- Filled in by skills.js from the skills array -->
-      <div class="skill-search" role="search">
-        <input type="search" id="skill-search" aria-label="Search skills" placeholder="Search skills" autocomplete="off">
-        <button type="button" id="skill-search-clear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+  <main id="main">
+    <!-- Hero: who I am and where to go next -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <!-- Header banner. The browser picks the 1024px or 2048px file to suit the screen. -->
+      <img class="hero-banner"
+           src="images/header-banner-2048.jpg"
+           srcset="images/header-banner-1024.jpg 1024w, images/header-banner-2048.jpg 2048w"
+           sizes="(min-width: 2048px) 2048px, 100vw"
+           width="2048" height="768"
+           fetchpriority="high"
+           alt="Banner reading &quot;Your Maintenance Record and Recalls Portal&quot; over a sunset mountain road, with a black Harley-Davidson Road Glide, a blue Harley-Davidson trike, a black Can-Am Spyder and a red Slingshot lined up on the pavement beneath their brand logos.">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <!-- Main heading is the value statement; my name appears in About Me below -->
+          <h1 id="hero-heading" class="hero-title">Logistician, motorcycle rider, and budding AI creator building practical tools.</h1>
+          <p class="hero-actions">
+            <a class="button button-primary" href="projects.html">See my projects</a>
+            <a class="button button-outline" href="#contact">Get in touch</a>
+          </p>
+        </div>
       </div>
-      <p id="skills-count" class="form-note" aria-live="polite"></p>
-      <ul id="skills-list" class="skills-list"></ul>
-      <p id="skills-empty" class="form-note" hidden>No items match</p>
-
-      <form id="skill-form" class="project-form">
-        <p>
-          <label for="skill-name">Add a skill</label>
-          <input type="text" id="skill-name" name="skill" maxlength="60" autocomplete="off" required>
-        </p>
-        <p>
-          <button type="submit">Add skill</button>
-        </p>
-      </form>
+      <div class="road-line" aria-hidden="true"></div>
     </section>
 
-    <section>
-      <h2>Currently Building</h2>
-      <ul>
-        <li>Learning the fundamentals of Python</li>
-        <li>Experimenting with prompt engineering and AI APIs</li>
-        <li>This website, one HTML element at a time</li>
-      </ul>
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="container">
+        <h2 id="about-heading">About Me</h2>
+        <div class="prose">
+          <p>I'm Eric Hooker, a logistician by trade who spends my days keeping supplies, schedules, and people moving in the right direction. When I'm off the clock, you'll usually find me on my motorcycle chasing open roads.</p>
+          <p>Lately I've been channeling that same curiosity into artificial intelligence, learning to build practical AI tools that make everyday work simpler, faster, and smarter.</p>
+        </div>
+        <p class="section-more"><a href="projects.html">See what I'm building <span aria-hidden="true">→</span></a></p>
+      </div>
     </section>
 
-    <section>
-      <h2>Projects</h2>
+    <section id="projects" class="section section-band" aria-labelledby="projects-heading">
+      <div class="container">
+        <h2 id="projects-heading">Featured Projects</h2>
 
-      <article>
-        <h3>Shipment Status Assistant</h3>
-        <p>A simple AI chatbot that answers plain-English questions about where a shipment is and when it will arrive.</p>
-        <a href="#">View project</a>
-      </article>
+        <!-- PLACEHOLDER: these three are sample projects, not real ones yet.
+             Replace them here and in the Featured section of projects.html. -->
+        <div class="card-grid">
+          <article class="card">
+            <p class="card-meta"><span class="tag">Placeholder</span></p>
+            <h3>Shipment Status Assistant</h3>
+            <p>A simple AI chatbot that answers plain-English questions about where a shipment is and when it will arrive.</p>
+            <a class="card-link" href="projects.html#shipment-status-assistant">Read about Shipment Status Assistant <span aria-hidden="true">→</span></a>
+          </article>
 
-      <article>
-        <h3>Ride Log</h3>
-        <p>A lightweight tracker for motorcycle trips that records routes, mileage, and notes from the road.</p>
-        <a href="#">View project</a>
-      </article>
+          <article class="card">
+            <p class="card-meta"><span class="tag">Placeholder</span></p>
+            <h3>Ride Log</h3>
+            <p>A lightweight tracker for motorcycle trips that records routes, mileage, and notes from the road.</p>
+            <a class="card-link" href="projects.html#ride-log">Read about Ride Log <span aria-hidden="true">→</span></a>
+          </article>
 
-      <article>
-        <h3>Inventory Forecast Notebook</h3>
-        <p>A Python notebook that uses past usage data to predict when supplies will need to be reordered.</p>
-        <a href="#">View project</a>
-      </article>
+          <article class="card">
+            <p class="card-meta"><span class="tag">Placeholder</span></p>
+            <h3>Inventory Forecast Notebook</h3>
+            <p>A Python notebook that uses past usage data to predict when supplies will need to be reordered.</p>
+            <a class="card-link" href="projects.html#inventory-forecast-notebook">Read about Inventory Forecast Notebook <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+
+        <p class="section-more"><a href="projects.html">See all projects <span aria-hidden="true">→</span></a></p>
+      </div>
     </section>
 
-    <section>
-      <h2>Recent Posts</h2>
+    <section id="skills" class="section" aria-labelledby="skills-heading">
+      <div class="container">
+        <h2 id="skills-heading">Skills</h2>
+        <!-- Filled in by skills.js from the skills array -->
+        <div class="skill-search" role="search">
+          <input type="search" id="skill-search" aria-label="Search skills" placeholder="Search skills" autocomplete="off">
+          <button type="button" id="skill-search-clear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+        </div>
+        <p id="skills-count" class="form-note" aria-live="polite"></p>
+        <ul id="skills-list" class="skills-list"></ul>
+        <p id="skills-empty" class="form-note skills-empty" hidden>No items match</p>
 
-      <article>
-        <h3>From Logistics to AI: Why I Made the Jump</h3>
-        <p>A look at the moment I realized the problems I solve at work are perfect fits for AI.</p>
-      </article>
+        <form id="skill-form" class="project-form skill-form">
+          <p>
+            <label for="skill-name">Add a skill</label>
+            <input type="text" id="skill-name" name="skill" maxlength="60" autocomplete="off" required>
+          </p>
+          <p>
+            <button type="submit">Add skill</button>
+          </p>
+        </form>
 
-      <article>
-        <h3>What Long Rides Taught Me About Learning to Code</h3>
-        <p>Patience, preparation, and enjoying the journey apply just as much to programming as they do to the open road.</p>
-      </article>
-
-      <article>
-        <h3>My First Week Writing HTML</h3>
-        <p>Notes on semantic tags, rookie mistakes, and why an ugly page is a great place to start.</p>
-      </article>
+        <p class="section-more"><a href="projects.html">See these skills in my projects <span aria-hidden="true">→</span></a></p>
+      </div>
     </section>
 
-    <aside>
-      <h2>Favorite Quote</h2>
-      <blockquote>
-        <p>"Amateurs talk strategy. Professionals talk logistics."</p>
-      </blockquote>
-      <p>&mdash; <cite>Often attributed to General Omar Bradley</cite></p>
-    </aside>
+    <section id="building" class="section section-band" aria-labelledby="building-heading">
+      <div class="container">
+        <h2 id="building-heading">Currently Building</h2>
+        <ul class="building-list">
+          <li>Learning the fundamentals of Python</li>
+          <li>Experimenting with prompt engineering and AI APIs</li>
+          <li>This website, one HTML element at a time</li>
+        </ul>
+        <p class="section-more"><a href="posts.html">Follow along in my posts <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <address>
-        <p>Phone: <a href="tel:+19107779311">910-777-9311</a></p>
-      </address>
-      <form id="contact-form" action="/api/contact" method="post">
-        <p>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" autocomplete="name" pattern="[A-Za-z ]+" title="Letters and spaces only" required>
-        </p>
+    <section id="posts" class="section" aria-labelledby="posts-heading">
+      <div class="container">
+        <h2 id="posts-heading">Latest Posts</h2>
 
-        <p>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" autocomplete="email" required>
-        </p>
+        <!-- PLACEHOLDER: post titles and summaries only; the full posts aren't written yet (see posts.html). -->
+        <div class="card-grid">
+          <article class="card">
+            <p class="card-meta"><span class="tag">Draft</span></p>
+            <h3>From Logistics to AI: Why I Made the Jump</h3>
+            <p>A look at the moment I realized the problems I solve at work are perfect fits for AI.</p>
+            <a class="card-link" href="posts.html#logistics-to-ai">Read more<span class="visually-hidden">: From Logistics to AI: Why I Made the Jump</span> <span aria-hidden="true">→</span></a>
+          </article>
 
-        <p>
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" autocomplete="tel">
-        </p>
+          <article class="card">
+            <p class="card-meta"><span class="tag">Draft</span></p>
+            <h3>What Long Rides Taught Me About Learning to Code</h3>
+            <p>Patience, preparation, and enjoying the journey apply just as much to programming as they do to the open road.</p>
+            <a class="card-link" href="posts.html#long-rides-learning-to-code">Read more<span class="visually-hidden">: What Long Rides Taught Me About Learning to Code</span> <span aria-hidden="true">→</span></a>
+          </article>
 
-        <p>
-          <label for="subject">Subject</label>
-          <select id="subject" name="subject">
-            <option value="general">General</option>
-            <option value="project-inquiry">Project inquiry</option>
-            <option value="other">Other</option>
-          </select>
-        </p>
+          <article class="card">
+            <p class="card-meta"><span class="tag">Draft</span></p>
+            <h3>My First Week Writing HTML</h3>
+            <p>Notes on semantic tags, rookie mistakes, and why an ugly page is a great place to start.</p>
+            <a class="card-link" href="posts.html#first-week-writing-html">Read more<span class="visually-hidden">: My First Week Writing HTML</span> <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
 
-        <p>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="6" maxlength="500" placeholder="What would you like to talk about?" aria-describedby="message-count" required></textarea>
-          <span id="message-count" class="char-count">0 / 500</span>
-        </p>
+        <p class="section-more"><a href="posts.html">View all posts <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
 
-        <p>
-          <input type="checkbox" id="subscribe" name="subscribe" value="yes">
-          <label for="subscribe">Subscribe me to occasional updates.</label>
-        </p>
+    <section class="section section-band" aria-labelledby="quote-heading">
+      <div class="container">
+        <h2 id="quote-heading" class="visually-hidden">Favorite quote</h2>
+        <figure class="quote">
+          <blockquote>
+            <p>Amateurs talk strategy. Professionals talk logistics.</p>
+          </blockquote>
+          <figcaption>&mdash; <cite>Often attributed to General Omar Bradley</cite></figcaption>
+        </figure>
+      </div>
+    </section>
 
-        <!-- Honeypot: hidden from people, but spam bots tend to fill it in. Reject any submission where it has a value. -->
-        <p hidden>
-          <label for="website">Leave this field empty</label>
-          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-        </p>
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <div class="container contact-grid">
+        <div class="contact-details">
+          <h2 id="contact-heading">Get in Touch</h2>
+          <p class="section-intro">Send me a message with the form, or give me a call.</p>
+          <address>
+            <p>Phone: <a href="tel:+19107779311">910-777-9311</a></p>
+          </address>
+        </div>
 
-        <p>
-          <button type="submit">Send message</button>
-          <button type="reset">Reset</button>
-        </p>
+        <form id="contact-form" class="contact-form" action="/api/contact" method="post">
+          <div class="field-row">
+            <p>
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" maxlength="100" pattern="(?=.*\p{L})[\p{L}\p{M} '’.\-]+" title="Letters, spaces, hyphens, apostrophes and periods only" required>
+            </p>
 
-        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-      </form>
+            <p>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </p>
+          </div>
+
+          <div class="field-row">
+            <p>
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </p>
+
+            <p>
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="general">General</option>
+                <option value="project-inquiry">Project inquiry</option>
+                <option value="other">Other</option>
+              </select>
+            </p>
+          </div>
+
+          <p>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" maxlength="500" placeholder="What would you like to talk about?" aria-describedby="message-count" required></textarea>
+            <span id="message-count" class="char-count">0 / 500</span>
+          </p>
+
+          <p class="checkbox-row">
+            <input type="checkbox" id="subscribe" name="subscribe" value="yes">
+            <label for="subscribe">Subscribe me to occasional updates.</label>
+          </p>
+
+          <!-- Honeypot: hidden from people, but spam bots tend to fill it in. Reject any submission where it has a value. -->
+          <p hidden>
+            <label for="website">Leave this field empty</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </p>
+
+          <p class="form-actions">
+            <button type="submit">Send message</button>
+            <button type="reset">Reset</button>
+          </p>
+
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2026 Eric Hooker. All rights reserved.</p>
+  <!-- Footer: short site map + copyright, same on every page -->
+  <footer class="site-footer">
+    <div class="container site-footer-inner">
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="posts.html">Posts</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 Eric Hooker. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="theme.js"></script>

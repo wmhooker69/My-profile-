@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts — Eric Hooker</title>
+  <meta name="description" content="Posts by Eric Hooker on logistics, motorcycles, and learning to build AI tools.">
+  <script>
+    // Flag that JavaScript is running so the nav only collapses when the burger can open it.
+    document.documentElement.classList.add('js');
+
+    // Set the theme before first paint so there's no flash of the wrong one:
+    // saved choice first, otherwise the system preference. See theme.js.
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Site header: same on every page; only aria-current changes -->
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <nav class="site-nav" aria-label="Main">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+        <ul id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="posts.html" aria-current="page">Posts</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container page-intro">
+      <h1>Posts</h1>
+      <p>Notes on logistics, the open road, and learning to build with AI.</p>
+    </div>
+
+    <section class="section" aria-label="All posts">
+      <div class="container">
+        <!-- PLACEHOLDER: titles and summaries only; the full posts aren't written yet.
+             Keep the ids: the home page "Read more" links point to them. -->
+        <div class="post-list">
+          <article class="card" id="logistics-to-ai">
+            <p class="card-meta"><span class="tag">Draft</span></p>
+            <h2>From Logistics to AI: Why I Made the Jump</h2>
+            <p>A look at the moment I realized the problems I solve at work are perfect fits for AI.</p>
+            <p class="placeholder-note">Full post coming soon.</p>
+          </article>
+
+          <article class="card" id="long-rides-learning-to-code">
+            <p class="card-meta"><span class="tag">Draft</span></p>
+            <h2>What Long Rides Taught Me About Learning to Code</h2>
+            <p>Patience, preparation, and enjoying the journey apply just as much to programming as they do to the open road.</p>
+            <p class="placeholder-note">Full post coming soon.</p>
+          </article>
+
+          <article class="card" id="first-week-writing-html">
+            <p class="card-meta"><span class="tag">Draft</span></p>
+            <h2>My First Week Writing HTML</h2>
+            <p>Notes on semantic tags, rookie mistakes, and why an ugly page is a great place to start.</p>
+            <p class="placeholder-note">Full post coming soon.</p>
+          </article>
+        </div>
+        <p class="section-more"><a href="index.html">Back to home <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer: short site map + copyright, same on every page -->
+  <footer class="site-footer">
+    <div class="container site-footer-inner">
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="posts.html" aria-current="page">Posts</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 Eric Hooker. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="theme.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>

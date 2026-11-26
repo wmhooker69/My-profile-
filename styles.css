@@ -1,150 +1,291 @@
+/* =====================================================================
+   Site styles. Colors come only from the tokens in theme.css, so every
+   rule here works in both light and dark mode.
+
+   Contents
+     1. Base and type scale
+     2. Layout helpers (container, sections, visually-hidden, skip link)
+     3. Buttons and links
+     4. Site header and navigation (burger menu on small screens)
+     5. Hero (home page)
+     6. Cards (featured projects, posts)
+     7. Skills (chips, search, add form; built by skills.js)
+     8. Currently Building list
+     9. Quote
+    10. Contact section and forms
+    11. Footer
+    12. Inner page intro (Projects, Posts)
+    13. Projects page tool (add form, filter chips, project list)
+    14. Reduced motion
+   ===================================================================== */
+
+/* ---------- 1. Base and type scale ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 /* Fluid type: clamp(minimum, preferred, maximum).
    The preferred value mixes rem + vw so text grows with the viewport
    but still respects the user's browser zoom / font-size setting. */
 body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   line-height: 1.6;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 1.6rem + 4vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
 h2 {
-  font-size: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+  font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.25rem);
+  letter-spacing: -0.01em;
 }
 
 h3 {
-  font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem);
 }
 
-header h1 {
-  font-size: clamp(2.25rem, 1.5rem + 3.75vw, 3.5rem);
-  color: var(--primary);
+p {
+  margin: 0 0 1rem;
 }
 
-header img {
-  object-fit: cover;
-  object-position: bottom;
-}
-
-header p {
-  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
-  color: var(--primary);
-}
-
-/* Links, cards, and forms use the theme tokens from theme.css */
-a {
-  color: var(--primary);
-}
-
-article,
-aside {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.25rem 1rem 1rem;
-  margin-bottom: 1rem;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 cite {
   color: var(--text-muted);
 }
 
-input:not([type="checkbox"]),
-select,
-textarea {
-  background-color: var(--bg);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 0.4rem 0.5rem;
-  font: inherit;
+/* ---------- 2. Layout helpers ---------- */
+
+/* Caps the content width so lines stay readable on wide screens */
+.container {
+  width: 100%;
+  max-width: 70rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
 }
 
-input[type="checkbox"] {
-  accent-color: var(--primary);
+.section {
+  padding-block: clamp(2.5rem, 5vw + 1rem, 4.5rem);
 }
 
-input::placeholder,
-textarea::placeholder {
+/* Alternate sections get a soft band of color for rhythm */
+.section-band {
+  background-color: var(--surface);
+}
+
+.section-intro {
+  max-width: 65ch;
   color: var(--text-muted);
-  opacity: 1;
+  margin-bottom: 1.75rem;
 }
 
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 1px;
+.prose {
+  max-width: 65ch;
 }
 
-input:user-invalid,
-textarea:user-invalid {
-  border-color: var(--danger);
+/* "See all …" link at the end of each section */
+.section-more {
+  margin: 1.75rem 0 0;
+  font-weight: 600;
 }
 
-form button {
-  font: inherit;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+/* Hidden on screen, still read by screen readers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* First thing a keyboard user reaches; appears only when focused */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -10rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Decorative dashed "center line", a nod to the open road */
+.road-line {
+  height: 4px;
+  background-image: repeating-linear-gradient(90deg, var(--primary) 0 2.5rem, transparent 2.5rem 4.25rem);
+  opacity: 0.55;
+}
+
+/* Status tag on a card (Placeholder, Draft) */
+.tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tag {
+  padding: 0.1rem 0.6rem;
+  border: 1px dashed var(--border);
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- 3. Buttons and links ---------- */
+
+a {
+  color: var(--primary);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Link styled as a button (hero calls to action) */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 48px;
+  padding: 0.6rem 1.4rem;
   border: 2px solid var(--primary);
-  cursor: pointer;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-form button[type="submit"] {
+.button-primary {
   background-color: var(--primary);
   color: var(--on-primary);
 }
 
-form button[type="reset"] {
+.button-outline {
   background-color: transparent;
   color: var(--primary);
 }
 
-form button:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 2px;
+.button:hover {
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
-/* Navigation: horizontal on wider screens, theme toggle pinned right */
-nav {
+.button-outline:hover {
+  background-color: var(--surface);
+}
+
+.button:focus-visible {
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+/* ---------- 4. Site header and navigation ---------- */
+
+.site-header {
+  position: relative; /* the mobile menu drops down from here */
+  border-bottom: 1px solid var(--border);
+  background-color: var(--bg);
+}
+
+.site-header-inner {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
+  min-height: 4.25rem;
 }
 
-nav .theme-toggle {
-  margin-left: auto;
+.site-nav {
+  margin-left: auto; /* stays on the right even when there's no site name beside it */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-nav ul {
+.site-nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 1.5rem;
+  gap: 0.25rem;
 }
 
-nav a {
-  color: var(--primary);
+.site-nav a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  color: var(--text);
   font-weight: 600;
   text-decoration: none;
 }
 
-nav a:hover,
-nav a:focus-visible {
+.site-nav a:hover {
+  color: var(--primary);
+  background-color: var(--surface);
+}
+
+/* Current page: colored and underlined, not color alone */
+.site-nav a[aria-current="page"] {
+  color: var(--primary);
   text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.45em;
 }
 
 .menu-toggle {
   display: none;
 }
 
-/* Mobile: collapse the nav behind a burger button */
+/* Small screens: links collapse behind the burger and drop down full width */
 @media (max-width: 600px) {
   .js .menu-toggle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-sizing: border-box;
     width: 44px;
     height: 44px;
     padding: 10px;
@@ -175,34 +316,444 @@ nav a:focus-visible {
     transform: translateY(-8.5px) rotate(-45deg);
   }
 
-  nav ul {
+  .site-nav ul {
+    order: 1;
     flex-direction: column;
     gap: 0;
-    order: 1; /* drop the open menu below both buttons */
-    flex-basis: 100%;
   }
 
-  .js nav ul {
+  .js .site-nav ul {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 0.5rem clamp(1rem, 4vw, 2rem) 1rem;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--border);
   }
 
   .js .menu-toggle[aria-expanded="true"] + ul {
     display: flex;
   }
 
-  nav a {
-    display: block;
-    padding: 0.75rem 0; /* bigger tap targets */
+  .site-nav a {
+    padding: 0.75rem 0.5rem; /* bigger tap targets */
+  }
+
+  /* Without JS the links stay visible and wrap under the name */
+  html:not(.js) .site-header-inner {
+    flex-wrap: wrap;
+    padding-block: 0.5rem;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .menu-toggle span {
-    transition: none;
+/* ---------- 5. Hero (home page) ---------- */
+
+.hero-inner {
+  padding-block: clamp(2rem, 4vw + 1rem, 4rem);
+}
+
+.hero h1 {
+  margin-bottom: 1rem;
+}
+
+/* Value statement as the page's main heading: big, but sized for a full sentence */
+.hero-title {
+  max-width: 22ch;
+  font-size: clamp(1.9rem, 1.3rem + 2.6vw, 3.1rem);
+  margin-bottom: 1.75rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+/* Header banner: full width, never stretched past its real 2048px size, never cropped
+   (its headline and logos run edge to edge, so cropping would cut them off) */
+.hero-banner {
+  display: block;
+  width: 100%;
+  max-width: 2048px;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* ---------- 6. Cards (featured projects, posts) ---------- */
+
+/* 1 column on phones, 2 on tablets, 3 on wide screens */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--surface);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Cards on a colored band switch to the page color so they still stand out */
+.section-band .card {
+  background-color: var(--bg);
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.card h3 {
+  margin: 0;
+}
+
+.card p {
+  margin: 0;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* The link sits at the bottom of every card, however long the text is */
+.card-link {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  font-weight: 600;
+}
+
+/* Anchor targets on inner pages: highlight the card a link jumped to */
+.card:target {
+  border-color: var(--primary);
+  border-width: 2px;
+}
+
+/* ---------- 7. Skills (built by skills.js) ---------- */
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* Each skill is a chip: the name (click to edit) plus a small Remove button */
+.skill-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.4rem 0.3rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background-color: var(--bg);
+}
+
+.skill-item:hover,
+.skill-item:focus-within {
+  border-color: var(--primary);
+}
+
+/* Looks like plain text, but it's a button so it can be clicked or tabbed to for editing */
+.skill-name {
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0.15rem 0;
+  text-align: left;
+  cursor: text;
+}
+
+.skill-name:hover {
+  color: var(--primary);
+}
+
+.skill-item .button-secondary {
+  min-height: 32px;
+  padding: 0.1rem 0.7rem;
+  font-size: 0.8rem;
+  border-width: 1px;
+  border-radius: 999px;
+}
+
+.skill-edit {
+  width: 14rem;
+  max-width: 100%;
+}
+
+/* Skills search: the × clear button sits inside the right edge of the input */
+.skill-search {
+  position: relative;
+  max-width: 28rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-search input[type="search"] {
+  width: 100%;
+  padding-right: 2.75rem; /* room for the × so text doesn't run under it */
+}
+
+/* Hide the browser's own clear icon so there's only one × */
+.skill-search input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-clear {
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  font: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-clear:hover {
+  color: var(--primary);
+  background-color: var(--surface);
+}
+
+.search-clear:focus-visible {
+  outline-offset: 0;
+}
+
+.skills-empty {
+  margin-top: 0.75rem;
+}
+
+/* Add-a-skill form sits in a row on wider screens */
+.skill-form {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--border);
+}
+
+.skill-form p {
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- 8. Currently Building list ---------- */
+
+.building-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+  max-width: 40rem;
+}
+
+/* Each item gets a small road-sign style marker */
+.building-list li {
+  position: relative;
+  padding: 0.85rem 1rem 0.85rem 2.75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--bg);
+}
+
+.building-list li::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1.35rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid var(--primary);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+/* ---------- 9. Quote ---------- */
+
+.quote {
+  margin: 0 auto;
+  max-width: 44rem;
+  text-align: center;
+}
+
+.quote blockquote {
+  margin: 0 0 1rem;
+}
+
+.quote blockquote p {
+  margin: 0;
+  font-size: clamp(1.4rem, 1.1rem + 1.5vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Big decorative quote mark above the text */
+.quote blockquote::before {
+  content: "\201C";
+  display: block;
+  font-size: 4rem;
+  line-height: 0.8;
+  color: var(--primary);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.quote figcaption {
+  color: var(--text-muted);
+}
+
+/* ---------- 10. Contact section and forms ---------- */
+
+.contact-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: 3.5rem;
   }
 }
 
-/* Contact form: character counter and status message */
+.contact-details address {
+  font-style: normal;
+}
+
+.contact-details a[href^="tel:"] {
+  font-weight: 600;
+}
+
+input:not([type="checkbox"]),
+select,
+textarea {
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--primary);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+input:user-invalid,
+textarea:user-invalid {
+  border-color: var(--danger);
+}
+
+form button {
+  font: inherit;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  border: 2px solid var(--primary);
+  cursor: pointer;
+}
+
+form button[type="submit"] {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+form button[type="reset"] {
+  background-color: transparent;
+  color: var(--primary);
+}
+
+form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Contact form: one field per row, labels above */
+.contact-form {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--bg);
+}
+
+.contact-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.contact-form input:not([type="checkbox"]),
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+}
+
+.contact-form .checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-form .checkbox-row label {
+  display: inline;
+  font-weight: normal;
+  margin: 0;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Two fields side by side on wider screens */
+@media (min-width: 600px) {
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1rem;
+  }
+}
+
+/* Character counter and status message */
 .char-count {
   display: block;
   margin-top: 0.25rem;
@@ -221,7 +772,7 @@ nav a:focus-visible {
 
 .form-status {
   padding: 0.5rem 0.75rem;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--border);
   background-color: var(--surface);
 }
@@ -236,12 +787,94 @@ nav a:focus-visible {
   border-color: var(--danger);
 }
 
-form button:disabled {
-  opacity: 0.6;
-  cursor: wait;
+/* ---------- 11. Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background-color: var(--surface);
+  padding-block: 2rem;
+  font-size: 0.95rem;
 }
 
-/* ---------- Projects page ---------- */
+.site-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+.footer-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+.footer-nav a {
+  display: inline-block;
+  padding-block: 0.4rem; /* comfortable tap target */
+  font-weight: 600;
+}
+
+.footer-nav a[aria-current="page"] {
+  color: var(--text);
+}
+
+.site-footer p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* ---------- 12. Inner page intro (Projects, Posts) ---------- */
+
+.page-intro {
+  padding-block: clamp(2rem, 4vw + 1rem, 3.5rem) 0;
+}
+
+.page-intro h1 {
+  font-size: clamp(2.25rem, 1.6rem + 3vw, 3.25rem);
+}
+
+.page-intro p {
+  max-width: 60ch;
+  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem);
+  color: var(--text-muted);
+}
+
+/* Posts page: one post per row, newest first */
+.post-list {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 48rem;
+}
+
+.post-list h2 {
+  font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.6rem);
+  margin: 0;
+}
+
+/* Marked placeholder text on Projects and Posts, waiting for real content */
+.placeholder-note {
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+}
+
+/* ---------- 13. Projects page tool ---------- */
+
+.tracker > section + section {
+  margin-top: 3rem;
+}
+
+/* The tracker sits on a colored band, so its cards use the page color */
+.section-band .project-card {
+  background-color: var(--bg);
+}
+
 .project-form label {
   display: block;
   font-weight: 600;
@@ -251,7 +884,6 @@ form button:disabled {
 .project-form input[type="text"],
 .project-form select,
 .project-form textarea {
-  box-sizing: border-box;
   width: 100%;
   max-width: 36rem;
 }
@@ -307,7 +939,7 @@ form button:disabled {
 
 .button-secondary,
 .button-danger {
-  border-radius: 4px;
+  border-radius: 6px;
   min-height: 40px;
   padding: 0.3rem 0.9rem;
 }
@@ -332,9 +964,6 @@ form button:disabled {
   color: var(--bg);
 }
 
-.chip:focus-visible,
-.button-secondary:focus-visible,
-.button-danger:focus-visible,
 #projects-heading:focus-visible {
   outline: 3px solid var(--primary);
   outline-offset: 2px;
@@ -362,11 +991,13 @@ form button:disabled {
 
 .project-card {
   height: 100%;
-  box-sizing: border-box;
   margin-bottom: 0;
   padding: 0.75rem 1rem 1rem;
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--surface);
 }
 
 .project-card-top {
@@ -424,7 +1055,7 @@ form button:disabled {
   flex-basis: 100%;
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--danger);
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: var(--bg);
 }
 
@@ -447,89 +1078,24 @@ form button:disabled {
   text-align: center;
 }
 
-/* ---------- Skills list (built by skills.js) ---------- */
-.skills-list {
-  padding-left: 0;
-  list-style: none;
+/* ---------- 14. Reduced motion ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
-.skill-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
-}
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle span,
+  .button,
+  .card {
+    transition: none;
+  }
 
-/* Looks like plain text, but it's a button so it can be clicked or tabbed to for editing */
-.skill-name {
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: none;
-  border-bottom: 1px dashed var(--border);
-  padding: 0.25rem 0;
-  text-align: left;
-  cursor: text;
-}
-
-.skill-name:hover {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
-}
-
-.skill-name:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 2px;
-}
-
-.skill-edit {
-  flex: 0 1 20rem;
-  min-width: 0;
-}
-
-/* Skills search: the × clear button sits inside the right edge of the input */
-.skill-search {
-  position: relative;
-  max-width: 36rem;
-  margin-bottom: 0.5rem;
-}
-
-.skill-search input[type="search"] {
-  box-sizing: border-box;
-  width: 100%;
-  padding-right: 2.75rem; /* room for the × so text doesn't run under it */
-}
-
-/* Hide the browser's own clear icon so there's only one × */
-.skill-search input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.search-clear {
-  position: absolute;
-  top: 50%;
-  right: 0.25rem;
-  transform: translateY(-50%);
-  width: 2.25rem;
-  height: 2.25rem;
-  padding: 0;
-  font: inherit;
-  font-size: 1.4rem;
-  line-height: 1;
-  color: var(--text-muted);
-  background: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.search-clear:hover {
-  color: var(--primary);
-  background-color: var(--surface);
-}
-
-.search-clear:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 0;
+  .button:hover,
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+  }
 }

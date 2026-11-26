@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects | Eric Hooker</title>
+  <title>Projects — Eric Hooker</title>
+  <meta name="description" content="Projects by Eric Hooker: featured work plus a tracker for motorcycle, trike, Slingshot and Can-Am builds.">
   <script>
     // Flag that JavaScript is running so the nav only collapses when the burger can open it.
     document.documentElement.classList.add('js');
@@ -23,78 +24,131 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="page-header">
-    <h1>Projects</h1>
-    <p>Builds, rides, and garage work, sorted by machine.</p>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Site header: same on every page; only aria-current changes -->
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <nav class="site-nav" aria-label="Main">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+        <ul id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
+          <li><a href="posts.html">Posts</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
   </header>
 
-  <nav>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </button>
-    <ul id="nav-menu">
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#skills">Skills</a></li>
-      <li><a href="projects.html" aria-current="page">Projects</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-        <circle cx="12" cy="12" r="5"/>
-        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-    </button>
-  </nav>
+  <main id="main">
+    <div class="container page-intro">
+      <h1>Projects</h1>
+      <p>Featured work first, then builds, rides, and garage work, sorted by machine.</p>
+    </div>
 
-  <main>
-    <section aria-labelledby="add-project-heading">
-      <h2 id="add-project-heading">Add a project</h2>
-      <form id="project-form" class="project-form" novalidate>
-        <p>
-          <label for="project-name">Name <span class="required-mark" aria-hidden="true">*</span></label>
-          <input type="text" id="project-name" name="name" maxlength="100" required aria-describedby="project-name-error" autocomplete="off">
-          <span id="project-name-error" class="field-error"></span>
-        </p>
+    <section class="section" aria-labelledby="featured-heading">
+      <div class="container">
+        <h2 id="featured-heading">Featured projects</h2>
+        <!-- PLACEHOLDER: these three are sample projects, not real ones yet.
+             Keep the ids: the home page cards link to them (projects.html#ride-log etc.). -->
+        <div class="card-grid">
+          <article class="card" id="shipment-status-assistant">
+            <p class="card-meta"><span class="tag">Placeholder</span></p>
+            <h3>Shipment Status Assistant</h3>
+            <p>A simple AI chatbot that answers plain-English questions about where a shipment is and when it will arrive.</p>
+            <p class="placeholder-note">Details coming soon: what it does, the tools used, its status, and a link.</p>
+          </article>
 
-        <p>
-          <label for="project-category">Category <span class="required-mark" aria-hidden="true">*</span></label>
-          <select id="project-category" name="category" required aria-describedby="project-category-error">
-            <option value="">Choose a category</option>
-          </select>
-          <span id="project-category-error" class="field-error"></span>
-        </p>
+          <article class="card" id="ride-log">
+            <p class="card-meta"><span class="tag">Placeholder</span></p>
+            <h3>Ride Log</h3>
+            <p>A lightweight tracker for motorcycle trips that records routes, mileage, and notes from the road.</p>
+            <p class="placeholder-note">Details coming soon: what it does, the tools used, its status, and a link.</p>
+          </article>
 
-        <p>
-          <label for="project-description">Description <span class="optional-mark">(optional)</span></label>
-          <textarea id="project-description" name="description" rows="4" maxlength="500" aria-describedby="project-description-count project-description-error"></textarea>
-          <span id="project-description-count" class="char-count">0 / 500</span>
-          <span id="project-description-error" class="field-error"></span>
-        </p>
-
-        <p class="form-note"><span aria-hidden="true">*</span> Required</p>
-
-        <p>
-          <button type="submit">Add project</button>
-        </p>
-      </form>
-      <p id="project-status" class="form-status" role="status" aria-live="polite"></p>
+          <article class="card" id="inventory-forecast-notebook">
+            <p class="card-meta"><span class="tag">Placeholder</span></p>
+            <h3>Inventory Forecast Notebook</h3>
+            <p>A Python notebook that uses past usage data to predict when supplies will need to be reordered.</p>
+            <p class="placeholder-note">Details coming soon: what it does, the tools used, its status, and a link.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section aria-labelledby="projects-heading">
-      <h2 id="projects-heading" tabindex="-1">Your projects</h2>
-      <div id="project-filters" class="chips" role="group" aria-label="Filter projects by category"></div>
-      <div id="project-groups"></div>
-      <noscript><p class="empty-state">Turn on JavaScript to add and view projects.</p></noscript>
-    </section>
+    <!-- Project tracker: saved in this browser only (projects.js) -->
+    <div class="section section-band">
+      <div class="container tracker">
+        <section aria-labelledby="add-project-heading">
+          <h2 id="add-project-heading">Add a project</h2>
+          <form id="project-form" class="project-form" novalidate>
+            <p>
+              <label for="project-name">Name <span class="required-mark" aria-hidden="true">*</span></label>
+              <input type="text" id="project-name" name="name" maxlength="100" required aria-describedby="project-name-error" autocomplete="off">
+              <span id="project-name-error" class="field-error"></span>
+            </p>
+
+            <p>
+              <label for="project-category">Category <span class="required-mark" aria-hidden="true">*</span></label>
+              <select id="project-category" name="category" required aria-describedby="project-category-error">
+                <option value="">Choose a category</option>
+              </select>
+              <span id="project-category-error" class="field-error"></span>
+            </p>
+
+            <p>
+              <label for="project-description">Description <span class="optional-mark">(optional)</span></label>
+              <textarea id="project-description" name="description" rows="4" maxlength="500" aria-describedby="project-description-count project-description-error"></textarea>
+              <span id="project-description-count" class="char-count">0 / 500</span>
+              <span id="project-description-error" class="field-error"></span>
+            </p>
+
+            <p class="form-note"><span aria-hidden="true">*</span> Required</p>
+
+            <p>
+              <button type="submit">Add project</button>
+            </p>
+          </form>
+          <p id="project-status" class="form-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section aria-labelledby="projects-heading">
+          <h2 id="projects-heading" tabindex="-1">Your projects</h2>
+          <div id="project-filters" class="chips" role="group" aria-label="Filter projects by category"></div>
+          <div id="project-groups"></div>
+          <noscript><p class="empty-state">Turn on JavaScript to add and view projects.</p></noscript>
+        </section>
+      </div>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2026 Eric Hooker. All rights reserved.</p>
+  <!-- Footer: short site map + copyright, same on every page -->
+  <footer class="site-footer">
+    <div class="container site-footer-inner">
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
+          <li><a href="posts.html">Posts</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 Eric Hooker. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="theme.js"></script>

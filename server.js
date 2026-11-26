@@ -23,7 +23,9 @@ const MAX_BODY_BYTES = 10 * 1024;
 
 const LIMITS = { name: 100, email: 254, phone: 30, message: 500 };
 const SUBJECTS = ['general', 'project-inquiry', 'other'];
-const NAME_PATTERN = /^[A-Za-z ]+$/;
+// Letters in any language (José, Zoë, 李), plus spaces, hyphens, apostrophes and periods.
+// Must contain at least one letter. No digits, symbols or line breaks.
+const NAME_PATTERN = /^(?=.*\p{L})[\p{L}\p{M} '’.-]+$/u;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Only these file types are served, and never dotfiles, data/, or server files.
@@ -59,7 +61,7 @@ function validateContact(body) {
   const errors = [];
 
   if (!data.name) errors.push('Name is required.');
-  else if (!NAME_PATTERN.test(data.name)) errors.push('Name can only contain letters and spaces.');
+  else if (!NAME_PATTERN.test(data.name)) errors.push('Name can only contain letters, spaces, hyphens, apostrophes and periods.');
   else if (data.name.length > LIMITS.name) errors.push('Name is too long.');
 
   if (!data.email) errors.push('Email is required.');
