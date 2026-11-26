@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eric Hooker</title>
+  <title>The Man Eric Hooker</title>
   <script>
     // Flag that JavaScript is running so the nav only collapses when the burger can open it.
     document.documentElement.classList.add('js');
@@ -60,12 +60,24 @@
 
     <section id="skills">
       <h2>Skills</h2>
-      <ul>
-        <li>Logistics</li>
-        <li>Motorcycle riding</li>
-        <li>Budding AI creator</li>
-        <li>Planning and problem-solving</li>
-      </ul>
+      <!-- Filled in by skills.js from the skills array -->
+      <div class="skill-search" role="search">
+        <input type="search" id="skill-search" aria-label="Search skills" placeholder="Search skills" autocomplete="off">
+        <button type="button" id="skill-search-clear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+      </div>
+      <p id="skills-count" class="form-note" aria-live="polite"></p>
+      <ul id="skills-list" class="skills-list"></ul>
+      <p id="skills-empty" class="form-note" hidden>No items match</p>
+
+      <form id="skill-form" class="project-form">
+        <p>
+          <label for="skill-name">Add a skill</label>
+          <input type="text" id="skill-name" name="skill" maxlength="60" autocomplete="off" required>
+        </p>
+        <p>
+          <button type="submit">Add skill</button>
+        </p>
+      </form>
     </section>
 
     <section>
@@ -191,5 +203,7 @@
   <script src="char-counter.js"></script>
   <script src="contact-form.js"></script>
   <script src="nav.js"></script>
+  <script src="skill-search.js"></script>
+  <script src="skills.js"></script>
 </body>
 </html>
